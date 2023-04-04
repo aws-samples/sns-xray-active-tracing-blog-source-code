@@ -31,7 +31,7 @@ Please read the blog post to get additional information about this solution.
 
 ## Deployment instructions:
 
-1. Clone/Download this GitHub repository
+1. Clone/download this GitHub repository
 2. Open a command-line tool of your preference, and navigate into the folder where you cloned or extracted this repository
 3. Test your AWS SAM installation by running AWS SAM [validate](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-validate.html) command:
 
