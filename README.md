@@ -10,6 +10,16 @@ This sample application demonstrates Amazon SNS with AWS X-Ray active tracing:
 
 ![Architecture diagram](/images/x-ray-sns-tracing-integration-use-case-2-architecture.drawio.png)
 
+This is how the sample architecture works:
+
+1. An AWS API Gateway receiving ride requests from users
+2. An AWS Lambda processing ride requests
+3. A DynamoDB table that serves as a store for rides
+4. An Amazon SNS topic that serves as a fan-out for ride requests
+5. Individual Amazon SQS queues and AWS Lambdas set up as buffering load-balancer to process ride requests by various back office services (customer notification, customer accounting, and so on)
+6. An SNS message filter is in place for the subscription of the extraordinary rides service
+7. A Kinesis Data Firehose delivery streams and archives them in an S3 bucket
+
 Please read the blog post to get additional information about this solution.
 
 ## Pre-requisites:
