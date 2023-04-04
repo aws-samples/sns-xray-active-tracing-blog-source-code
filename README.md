@@ -24,7 +24,7 @@ Please read the blog post to get additional information about this solution.
 
 ## Pre-requisites:
 
-- [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 - Install or update your AWS Command Line Interface (AWS CLI) to the [latest version](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 - Install or update your AWS Serverless Application Model (AWS SAM) CLI to the [latest version](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html).
 - [Configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) AWS CLI to get access to one of your AWS accounts. If you do not have an AWS account, please follow [instructions](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html) and create one.
