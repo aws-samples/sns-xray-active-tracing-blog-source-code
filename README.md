@@ -66,7 +66,7 @@ Please read the blog post to get additional information about this solution.
 
    ![CloudFormation stack](images/cloudformation.png)
 
-   In the meantime while your waiting, you may want to have a look at the AWS SAM template to make yourself familiar with the stack we launched. Just click on the **template.yaml** attachment below to see the content.
+   In the meantime, while you're waiting, you may want to have a look at the AWS SAM template to make yourself familiar with the stack we launched. Just click on the [template.yaml](template.yaml) file in this folder to see the content.
 
 ## Test the application
 
