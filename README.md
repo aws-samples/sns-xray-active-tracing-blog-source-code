@@ -103,11 +103,11 @@ In this step, we will validate that the Amazon SNS topic is publishing all messa
 
 3. Validate messages being passed in the application:
 
-   Go to your Amazon [CloudWatch X-Ray traces Service Map](https://console.aws.amazon.com/cloudwatch/home?#xray:service-map) in the AWS Console. Make sure the right region is selected.
+   Go to your [CloudWatch service map](https://console.aws.amazon.com/cloudwatch/home?#xray:service-map) in the AWS Console. Make sure the right region is selected.
 
    Send a few more requests as described in the previous step. The service map will display the traces captured from the messages sent to the API Gateway and passed along to the consumers.
 
-   ![CloudWatch X-Ray traces Service Map](images/servicemap.png)
+   ![CloudWatch service map](images/servicemap.png)
 
    Click on a node to view more details on the traces that were captured.
 
