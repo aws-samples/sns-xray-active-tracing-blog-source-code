@@ -58,6 +58,7 @@ Resources:
   RideCompletionTopic:
     Type: AWS::SNS::Topic
     Properties:
+      KmsMasterKeyId: alias/aws/sns
       TopicName: RideCompletionTopic
       TracingConfig: Active
 
