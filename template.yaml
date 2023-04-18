@@ -127,6 +127,8 @@ Resources:
 
   CustomerAccountingServiceQueue:
     Type: AWS::SQS::Queue
+    Properties:
+      SqsManagedSseEnabled: true
 
   CustomerAccountingServiceQueuePolicy:
     Type: AWS::SQS::QueuePolicy
@@ -154,6 +156,8 @@ Resources:
 
   CustomerNotificationServiceQueue:
     Type: AWS::SQS::Queue
+    Properties:
+      SqsManagedSseEnabled: true
 
   CustomerNotificationServiceQueuePolicy:
     Type: AWS::SQS::QueuePolicy
@@ -181,6 +185,8 @@ Resources:
 
   ExtraordinaryRidesServiceQueue:
     Type: AWS::SQS::Queue
+    Properties:
+      SqsManagedSseEnabled: true
 
   ExtraordinaryRidesServiceQueuePolicy:
     Type: AWS::SQS::QueuePolicy
