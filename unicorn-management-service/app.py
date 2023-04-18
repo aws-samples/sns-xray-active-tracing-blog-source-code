@@ -21,8 +21,26 @@ config = Config(connect_timeout=5, read_timeout=5, retries={'max_attempts': 1})
 dynamodb = boto3.client('dynamodb', config=config)
 sns = boto3.client('sns', config=config)
 
+REQUIRED_INT_FIELDS = ['duration', 'distance']
+REQUIRED_FLOAT_FIELDS = ['fare']
+REQUIRED_STR_FIELDS = ['from', 'to', 'customer']
+
 def is_invalid(request):
-    # TODO: validate request
+    for field in REQUIRED_INT_FIELDS:
+        if not isinstance(request.get(field, None), int):
+            print('Expecting integer for argument: {}'.format(field))
+            return True
+
+    for field in REQUIRED_FLOAT_FIELDS:
+        if not isinstance(request.get(field, None), float):
+            print('Expecting float for argument: {}'.format(field))
+            return True
+
+    for field in REQUIRED_STR_FIELDS:
+        if not isinstance(request.get(field, None), str):
+            print('Expecting string for argument: {}'.format(field))
+            return True
+
     return False
 
 @tracer.capture_lambda_handler
