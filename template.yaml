@@ -10,7 +10,7 @@ Description: >
 Globals:
   Function:
     Timeout: 10
-    Runtime: python3.9
+    Runtime: python3.10
     Tags:
       project: sns-xray-active-tracing-blog-source-code
       workshop: asynchronous-messaging-workshop
