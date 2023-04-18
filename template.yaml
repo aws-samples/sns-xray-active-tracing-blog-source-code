@@ -308,6 +308,25 @@ Resources:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: 'AES256'
 
+  RidesDeliveryArchiveBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref RidesDeliveryArchiveBucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: RestrictToTLSRequestsOnly
+            Action:
+              - s3:*
+            Effect: Deny
+            Resource:
+              - !Sub "arn:aws:s3:::${RidesDeliveryArchiveBucket}"
+              - !Sub "arn:aws:s3:::${RidesDeliveryArchiveBucket}/*"
+            Principal: '*'
+            Condition:
+              Bool:
+                'aws:SecureTransport': false
+
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
