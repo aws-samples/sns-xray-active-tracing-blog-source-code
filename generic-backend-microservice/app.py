@@ -12,7 +12,7 @@ def process(event):
     message_id = event['id']
 
     # will fail randomly to show the Amazon SNS redelivery feature
-    if random.choice([True, False]):
+    if random.choice([True, False]): # nosec B311: random number generator not used in a security/cryptographic context
         print("--------------------------------------")
         print("{{'msg-id': '{}', 'status': 'FAILED'}}".format(message_id))
         print("--------------------------------------")
