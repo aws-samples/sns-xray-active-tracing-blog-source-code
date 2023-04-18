@@ -4,7 +4,6 @@
 import json
 import os
 import random
-import time
 
 SERVICE_NAME = os.environ['SERVICE_NAME']
 
