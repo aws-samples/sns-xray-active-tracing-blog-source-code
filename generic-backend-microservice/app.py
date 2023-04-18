@@ -14,10 +14,10 @@ def process(event):
 
     # will fail randomly to show the Amazon SNS redelivery feature
     if random.choice([True, False]):
-      print("--------------------------------------")
-      print("{{'msg-id': '{}', 'status': 'FAILED'}}".format(message_id))
-      print("--------------------------------------")
-      raise Exception("I'm failing randomly...")
+        print("--------------------------------------")
+        print("{{'msg-id': '{}', 'status': 'FAILED'}}".format(message_id))
+        print("--------------------------------------")
+        raise Exception("I'm failing randomly...")
 
     print("+++++++++++++++++++++++++++++++++++++++++")
     print("{{'msg-id': '{}', 'status': 'PROCESSED'}}".format(message_id))
