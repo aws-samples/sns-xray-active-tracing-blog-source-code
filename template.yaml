@@ -137,14 +137,26 @@ Resources:
         - !Ref CustomerAccountingServiceQueue
       PolicyDocument:
         Statement:
-          Effect: Allow
-          Principal:
-            Service: sns.amazonaws.com
-          Action: sqs:SendMessage
-          Resource: "*"
-          Condition:
-            ArnEquals:
-              aws:SourceArn: !Ref RideCompletionTopic
+          - Effect: Allow
+            Principal:
+              Service: sns.amazonaws.com
+            Action: sqs:SendMessage
+            Resource: "*"
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref RideCompletionTopic
+          - Sid: DenyUnsecureTransport
+            Effect: Deny
+            Principal:
+              AWS: "*"
+            Action:
+              - sqs:ReceiveMessage
+              - sqs:SendMessage
+            Resource:
+              - !GetAtt CustomerAccountingServiceQueue.Arn
+            Condition:
+              Bool:
+                'aws:SecureTransport': false
 
   CustomerAccountingServiceQueueToRidesTopicSubscription:
     Type: AWS::SNS::Subscription
@@ -166,14 +178,26 @@ Resources:
         - !Ref CustomerNotificationServiceQueue
       PolicyDocument:
         Statement:
-          Effect: Allow
-          Principal:
-            Service: sns.amazonaws.com
-          Action: sqs:SendMessage
-          Resource: "*"
-          Condition:
-            ArnEquals:
-              aws:SourceArn: !Ref RideCompletionTopic
+          - Effect: Allow
+            Principal:
+              Service: sns.amazonaws.com
+            Action: sqs:SendMessage
+            Resource: "*"
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref RideCompletionTopic
+          - Sid: DenyUnsecureTransport
+            Effect: Deny
+            Principal:
+              AWS: "*"
+            Action:
+              - sqs:ReceiveMessage
+              - sqs:SendMessage
+            Resource:
+              - !GetAtt CustomerAccountingServiceQueue.Arn
+            Condition:
+              Bool:
+                'aws:SecureTransport': false
 
   CustomerNotificationServiceQueueToRidesTopicSubscription:
     Type: AWS::SNS::Subscription
@@ -195,14 +219,27 @@ Resources:
         - !Ref ExtraordinaryRidesServiceQueue
       PolicyDocument:
         Statement:
-          Effect: Allow
-          Principal:
-            Service: sns.amazonaws.com
-          Action: sqs:SendMessage
-          Resource: "*"
-          Condition:
-            ArnEquals:
-              aws:SourceArn: !Ref RideCompletionTopic
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: sns.amazonaws.com
+            Action: sqs:SendMessage
+            Resource: "*"
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref RideCompletionTopic
+          - Sid: DenyUnsecureTransport
+            Effect: Deny
+            Principal:
+              AWS: "*"
+            Action:
+              - sqs:ReceiveMessage
+              - sqs:SendMessage
+            Resource:
+              - !GetAtt CustomerAccountingServiceQueue.Arn
+            Condition:
+              Bool:
+                'aws:SecureTransport': false
 
   ExtraordinaryRidesServiceQueueToRidesTopicSubscription:
     Type: AWS::SNS::Subscription
