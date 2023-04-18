@@ -52,7 +52,7 @@ Please read the blog post to get additional information about this solution.
    ```bash
    export AWS_REGION=$(aws --profile default configure get region)
    sam deploy \
-       --stack-name wild-rydes-async-msg-2 \
+       --stack-name sns-xray-active-tracing-blog \
        --capabilities CAPABILITY_IAM \
        --region $AWS_REGION \
        --guided
@@ -62,7 +62,7 @@ Please read the blog post to get additional information about this solution.
 
 6. Wait until the stack is successfully deployed.
 
-   It takes usually 5 minutes until the stack launched. You can monitor the progress of the **wild-rydes-async-msg-2** stack in your SAM CLI or your [AWS CloudFormation Console](https://console.aws.amazon.com/cloudformation). When the stack is launched, the status will change from **CREATE_IN_PROGRESS** to **CREATE_COMPLETE**.
+   It takes usually 5 minutes until the stack launched. You can monitor the progress of the **sns-xray-active-tracing-blog** stack in your SAM CLI or your [AWS CloudFormation Console](https://console.aws.amazon.com/cloudformation). When the stack is launched, the status will change from **CREATE_IN_PROGRESS** to **CREATE_COMPLETE**.
 
    ![CloudFormation stack](images/cloudformation.png)
 
@@ -79,7 +79,7 @@ In this step, we will validate that the Amazon SNS topic is publishing all messa
    ```bash
    export AWS_REGION=$(aws --profile default configure get region)
    aws cloudformation describe-stacks \
-       --stack-name wild-rydes-async-msg-2 \
+       --stack-name sns-xray-active-tracing-blog \
        --query 'Stacks[].Outputs[?OutputKey==`UnicornManagementServiceApiSubmitRideCompletionEndpoint`].OutputValue' \
        --output text
     ```
@@ -90,7 +90,7 @@ In this step, we will validate that the Amazon SNS topic is publishing all messa
 
    ```bash
    export ENDPOINT=$(aws cloudformation describe-stacks \
-       --stack-name wild-rydes-async-msg-2 \
+       --stack-name sns-xray-active-tracing-blog \
        --query 'Stacks[].Outputs[?OutputKey==`UnicornManagementServiceApiSubmitRideCompletionEndpoint`].OutputValue' \
        --output text)
    ```
@@ -121,7 +121,7 @@ In this step, we will clean up all resources, we created during this example, so
 
    ```bash
    export S3_ARCHIVAL_BUCKET=$(aws cloudformation describe-stacks \
-       --stack-name wild-rydes-async-msg-2 \
+       --stack-name sns-xray-active-tracing-blog \
        --query 'Stacks[].Outputs[?OutputKey==`RidesDeliveryArchiveBucket`].OutputValue' \
        --output text)
    aws s3 rm s3://$S3_ARCHIVAL_BUCKET --recursive
@@ -132,11 +132,12 @@ In this step, we will clean up all resources, we created during this example, so
    Run the following command to delete the resources we created with our AWS SAM template:
 
    ```bash
-   aws cloudformation delete-stack \
-       --stack-name wild-rydes-async-msg-2
+   sam delete
    ```
 
-   Or you can follow [this link](https://console.aws.amazon.com/cloudformation/home?#/stacks) to view all CloudFormation Stacks. Select **wild-rydes-async-msg-2** and click on **Delete**.
+   When you get asked **Are you sure you want to delete the stack sns-xray-active-tracing-blog in the region REGION ? [y/N]:**, enter `y` and hit **ENTER**.
+
+   When you get asked **Are you sure you want to delete the folder sns-xray-active-tracing-blog in S3 which contains the artifacts? [y/N]:**, enter `y` and hit **ENTER**.
 
 3. Delete the AWS Lambda created Amazon CloudWatch Log Group:
 
@@ -144,12 +145,12 @@ In this step, we will clean up all resources, we created during this example, so
 
    ```bash
    aws logs describe-log-groups --query 'logGroups[*].logGroupName' --output table | awk '{print $2}' | \
-       grep ^/aws/lambda/wild-rydes-async-msg-2 | while read x; \
-       do  echo "deleting $x" ; aws logs delete-log-group --log-group-name $x; \
+       grep ^/aws/lambda/sns-xray-active-tracing-blog | while read x; \
+       do  echo "deleting $x" ; aws logs delete-log-group --log-group-name $x --region us-east-2; \
    done
    ```
 
-   Or you can follow [this link](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups) to list all ***Amazon CloudWatch Log Groups***. Please filter with the prefix `/aws/lambda/wild-rydes-async-msg-2`, to find all CloudWatch Log Groups AWS Lambda created during this lab. Select all the Amazon CloudWatch Log Group one after each other and choose **Delete log group** from the **Actions** menu.
+   Or you can follow [this link](https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups) to list all ***Amazon CloudWatch Log Groups***. Please filter with the prefix `/aws/lambda/sns-xray-active-tracing-blog`, to find all CloudWatch Log Groups AWS Lambda created during this lab. Select all the Amazon CloudWatch Log Group one after each other and choose **Delete log group** from the **Actions** menu.
 
 ## Going further
 
