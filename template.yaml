@@ -135,7 +135,8 @@ Resources:
       PolicyDocument:
         Statement:
           Effect: Allow
-          Principal: "*"
+          Principal:
+            Service: sns.amazonaws.com
           Action: sqs:SendMessage
           Resource: "*"
           Condition:
@@ -161,7 +162,8 @@ Resources:
       PolicyDocument:
         Statement:
           Effect: Allow
-          Principal: "*"
+          Principal:
+            Service: sns.amazonaws.com
           Action: sqs:SendMessage
           Resource: "*"
           Condition:
@@ -187,7 +189,8 @@ Resources:
       PolicyDocument:
         Statement:
           Effect: Allow
-          Principal: "*"
+          Principal:
+            Service: sns.amazonaws.com
           Action: sqs:SendMessage
           Resource: "*"
           Condition:
