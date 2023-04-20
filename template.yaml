@@ -219,7 +219,6 @@ Resources:
         - !Ref ExtraordinaryRidesServiceQueue
       PolicyDocument:
         Statement:
-        Statement:
           - Effect: Allow
             Principal:
               Service: sns.amazonaws.com
