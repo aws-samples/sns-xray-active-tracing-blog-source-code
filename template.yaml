@@ -91,11 +91,11 @@ Resources:
               - "*"
       Roles:
         - Ref: ApiGatewayCloudWatchRole
-  Metadata:
-    cfn_nag:
-      rules_to_suppress:
-        - id: W12
-          reason: "Resource '*' as strictly required by the service https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html"
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W12
+            reason: "Resource '*' as strictly required by the service https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html"
 
   RidesTable:
     Type: AWS::Serverless::SimpleTable
