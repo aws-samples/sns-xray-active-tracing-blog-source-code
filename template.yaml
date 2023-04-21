@@ -58,6 +58,7 @@ Resources:
     Type: AWS::ApiGateway::Account
     Properties: 
       CloudWatchRoleArn: !GetAtt ApiGatewayCloudWatchRole.Arn
+    DependsOn: ApiGatewayCloudWatchRolePolicy
 
   ApiGatewayCloudWatchRole:
     Type: AWS::IAM::Role
