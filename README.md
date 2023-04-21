@@ -60,6 +60,8 @@ Please read the blog post to get additional information about this solution.
 
    Confirm the first 5 proposed arguments by hitting **ENTER**. When you get asked **SubmitRideCompletionFunction may not have authorization defined, Is this okay? [y/N]:**, enter `y` and hit **ENTER** for remaining options.
 
+   This demonstrative application will deploy an API without authorization. Please consider controlling and managing access to your APIs.
+
 6. Wait until the stack is successfully deployed.
 
    It takes usually 5 minutes until the stack launched. You can monitor the progress of the **sns-xray-active-tracing-blog** stack in your SAM CLI or your [AWS CloudFormation Console](https://console.aws.amazon.com/cloudformation). When the stack is launched, the status will change from **CREATE_IN_PROGRESS** to **CREATE_COMPLETE**.
