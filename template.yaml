@@ -46,6 +46,50 @@ Resources:
     Properties:
       TracingEnabled: true
       StageName: Prod
+      AccessLogSetting:
+        DestinationArn: !GetAtt SubmitRideCompletionLogGroup.Arn
+        Format: '{"requestTime":"$context.requestTime","requestId":"$context.requestId","httpMethod":"$context.httpMethod","path":"$context.path","resourcePath":"$context.resourcePath","status":$context.status,"responseLatency":$context.responseLatency}'
+    DependsOn: ApiGatewayAccount
+
+  SubmitRideCompletionLogGroup:
+    Type: AWS::Logs::LogGroup
+
+  ApiGatewayAccount:
+    Type: AWS::ApiGateway::Account
+    Properties: 
+      CloudWatchRoleArn: !GetAtt ApiGatewayCloudWatchRole.Arn
+
+  ApiGatewayCloudWatchRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: sts:AssumeRole
+
+  ApiGatewayCloudWatchRolePolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: CloudWatchLogsPolicy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+              - logs:GetLogEvents
+              - logs:FilterLogEvents
+            Resource:
+              - "*"
+      Roles:
+        - Ref: ApiGatewayCloudWatchRole
 
   RidesTable:
     Type: AWS::Serverless::SimpleTable
