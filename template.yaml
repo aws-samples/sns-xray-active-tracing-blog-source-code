@@ -48,7 +48,7 @@ Resources:
       StageName: Prod
       AccessLogSetting:
         DestinationArn: !GetAtt SubmitRideCompletionLogGroup.Arn
-        Format: '{"requestTime":"$context.requestTime","requestId":"$context.requestId","httpMethod":"$context.httpMethod","path":"$context.path","resourcePath":"$context.resourcePath","status":$context.status,"responseLatency":$context.responseLatency}'
+        Format: '{"requestId":"$context.requestId","extendedRequestId":"$context.extendedRequestId","ip": "$context.identity.sourceIp","caller":"$context.identity.caller","user":"$context.identity.user","requestTime":"$context.requestTime","httpMethod":"$context.httpMethod","resourcePath":"$context.resourcePath","status":"$context.status","protocol":"$context.protocol","responseLength":"$context.responseLength"}'
     DependsOn: ApiGatewayAccount
 
   SubmitRideCompletionLogGroup:
