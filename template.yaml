@@ -16,6 +16,11 @@ Globals:
       workshop: asynchronous-messaging-workshop
       author: aws
 
+Mappings:
+  Solution:
+    Data:
+      LogGroupRetentionInDays: 7
+
 Resources:
   SubmitRideCompletionFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -53,6 +58,8 @@ Resources:
 
   SubmitRideCompletionLogGroup:
     Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: !FindInMap [Solution, Data, "LogGroupRetentionInDays"]
 
   ApiGatewayAccount:
     Type: AWS::ApiGateway::Account
