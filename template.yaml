@@ -316,6 +316,8 @@ Resources:
     Type: AWS::KinesisFirehose::DeliveryStream
     Properties:
       DeliveryStreamType: DirectPut
+      DeliveryStreamEncryptionConfigurationInput:
+         KeyType: AWS_OWNED_CMK
       S3DestinationConfiguration:
         BufferingHints:
           IntervalInSeconds: 60
