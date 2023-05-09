@@ -15,7 +15,7 @@ This is how the sample architecture works:
 1. An AWS API Gateway receiving ride requests from users
 2. An AWS Lambda processing ride requests
 3. A DynamoDB table that serves as a store for rides
-4. An Amazon SNS topic that serves as a fan-out for ride requests
+4. An SNS topic that serves as a fan-out for ride requests
 5. Individual Amazon SQS queues and AWS Lambdas set up as buffering load-balancer to process ride requests by various back office services (customer notification, customer accounting, and so on)
 6. An SNS message filter is in place for the subscription of the extraordinary rides service
 7. A Kinesis Data Firehose delivery streams and archives them in an S3 bucket
@@ -72,7 +72,7 @@ Please read the blog post to get additional information about this solution.
 
 ## Test the application
 
-In this step, we will validate that the Amazon SNS topic is publishing all messages to all subscribers. Because a subscriber can also fail processing a message, we also want to validate that Amazon SNS is redelivering the message, so that we will not miss a single message.
+In this step, we will validate that the SNS topic is publishing all messages to all subscribers. Because a subscriber can also fail processing a message, we also want to validate that SNS is redelivering the message, so that we will not miss a single message.
 
 1. Look up the API Gateway endpoint:
 
