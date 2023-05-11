@@ -1,6 +1,6 @@
 # Introducing Amazon SNS with AWS X-Ray active tracing
 
-This repository is to support the AWS Compute Blog - [Monitor your SNS-based applications end-to-end with AWS X-Ray Active Tracing](#).
+This repository is to support the AWS Compute Blog - [Monitor your SNS-based applications end-to-end with AWS X-Ray Active Tracing](https://aws.amazon.com/blogs/compute/monitor-amazon-sns-based-applications-end-to-end-with-aws-x-ray-active-tracing/).
 
 > **Important:** _this application uses various AWS services and there are costs associated with these services after the Free Tier usage - please see the [AWS Pricing page](https://aws.amazon.com/pricing/) for details. You are responsible for any AWS costs incurred. No warranty is implied in this example._
 
